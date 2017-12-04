@@ -18,3 +18,6 @@ def downlaod_chr_sizes(genome):
 def downlaod_chr_short_sizes(genome):
     return filter(lambda x: "_"  not in x[0] , downlaod_chr_sizes(genome))
 
+def availableGenomes():
+    return filter(lambda item: item not in ['.', '..', '10april2003'], [ss.split()[8] for ss in urllib2.urlopen("ftp://hgdownload.cse.ucsc.edu/goldenPath/").read().split("\n") if ss != ''])
+
