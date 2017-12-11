@@ -3,6 +3,7 @@ import os
 import copy
 import download_chr_file
 import FTPConnections
+import re
 from Configs.configs import Configs
 
 #All arguemnts that can be specified on BamInsight. Python module argparse is necessary here.
@@ -28,6 +29,7 @@ def entry_inputs():
     final_dir_args= parser.add_argument_group('Final Directory Arguments')
     final_dir_args.add_argument('-long_label', dest='long_label', nargs='+', help = Configs.ARG_LONG_LABEL, default=[] )
     final_dir_args.add_argument('-short_label', dest='short_label', nargs='+', help = Configs.ARG_SHORT_LBAEL, default=[])
+    final_dir_args.add_argument('--email', dest='email', default = "", help=Configs.ARG_EMAIL)
     final_dir_args.add_argument('-add_bam', dest='add_bam', action='store_true', default= False, help = Configs.ARG_ADD_BAM)
 
 
@@ -38,7 +40,7 @@ def entry_inputs():
 
     #Global Software Options
     run_phases_args = parser.add_argument_group('Global Software Options')
-    run_phases_args.add_argument('-no_create_dir', dest='create_dir', action='store_false', default= True, help=Configs.ARG_NO_CREATE_DIR)
+    run_phases_args.add_argument('-no_create_dir', dest='create_dir', action='store_true', default= False, help=Configs.ARG_NO_CREATE_DIR)
     run_phases_args.add_argument('-keep_final_dir', dest='keep_final_dir', action='store_true', default= False, help = Configs.ARG_KEEP_FINAL_DIR)
 
     #Version
@@ -96,8 +98,12 @@ def checklongLabelSource(LongLabelList, BAMList):
 
 #Check if Long Label List has some string inside. If none string is presented inside, make a deep copy of BasenameList
 def longLabelCopyFromBasename(LongLabelList,BasenameList):
+    listToReturn = []
     if len(LongLabelList) == 0:
-        return copy.copy(BasenameList)
+        BasenameList = copy.copy(BasenameList)
+        for e in BasenameList:
+            listToReturn.append(os.path.splitext(e)[0])
+        return listToReturn
     else:
         return LongLabelList
 
@@ -130,6 +136,16 @@ def LongLabelShortLabelNumberConcordance(ShortLabelList,LongLabelList):
 # fr-firstrand; fr-secondstrand;
 # pair-end single-end
 # etc
+
+###################################################################
+# Final Directory                                                 #
+###################################################################
+
+def checkEmail(email,create_dir):
+    if not create_dir:
+        if not re.match("[^@]+@[^@]+\.[^@]+", email):
+            raise ValueError(Configs.ERR_VALID_MAIL)
+
 
 ###################################################################
 # FTP Server

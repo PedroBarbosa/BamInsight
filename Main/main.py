@@ -3,6 +3,9 @@ import os
 import inputs
 import BAM_handling
 import download_chr_file
+import bedgraph_handling
+import BigWig_handling
+from Configs.configs import Configs
 
 #This function call inputs fucntion, and then check the arguments given
 def argsNcheckers():
@@ -28,6 +31,9 @@ def argsNcheckers():
     args.short_label = inputs.shortLabelCopyFromLongLabel(args.short_label,args.long_label)
     inputs.LongLabelShortLabelNumberConcordance(args.short_label,args.long_label)
 
+    #Checking Email
+    inputs.checkEmail(args.email, args.create_dir)
+
     sys.stdout.write(" CHECK!\n")
 
     # Checking FTP Server
@@ -40,15 +46,17 @@ def argsNcheckers():
 
 def createChrLengthFiles(genome):
     sys.stdout.write("Downloading Chr Sizes Files used by BamInsight:")
-    with open("chrom.sizes", "w") as f:
+    with open(Configs.FILE_CHROM_SIZES, "w") as f:
         for e in download_chr_file.downlaod_chr_sizes(genome):
             f.write('{}\t{}\n'.format(e[0],e[1]))
         f.close()
+    Configs.FILE_CHROM_SIZES = os.path.abspath(Configs.FILE_CHROM_SIZES)
 
-    with open("short.chrom.sizes", "w") as f:
+    with open(Configs.FILE_SHORT_CHROM_SIZES, "w") as f:
         for e in download_chr_file.downlaod_chr_short_sizes(genome):
             f.write('{}\t{}\n'.format(e[0],e[1]))
         f.close()
+    Configs.FILE_SHORT_CHROM_SIZES = os.path.abspath(Configs.FILE_SHORT_CHROM_SIZES)
     sys.stdout.write(" CHECK!\n")
 
 
@@ -80,6 +88,26 @@ def splitBamFilePerStrands(BAMfile, Basenamefile, Flags_F, opposite_F, Flags_R, 
     sys.stdout.write(" CHECK!\n")
     return NamesFilesPerStrand, ReadsPerStrand
 
-def createBedGraph():
-    pass
+def createBedGraph(NamesFilesPerStrand,ReadsPerStrand):
 
+    namesToReturn = []
+    for enum,StrandBamFile in enumerate(NamesFilesPerStrand):
+        sys.stdout.write("Creating BedGraph file for " + StrandBamFile + ":")
+        if enum == 0: strand = "+"
+        if enum == 1: strand = "-"
+        bedgraphFile = bedgraph_handling.createBedGraphFile(StrandBamFile)
+        bedgraph_handling.sortBedFile(bedgraphFile)
+        bedgraph_handling.applySclaingFactor(bedgraphFile,ReadsPerStrand[enum],strand)
+        #bedgraph_handling.writeHeader(bedgraphFile,os.path.splitext(StrandBamFile)[0])
+        namesToReturn.append(bedgraphFile)
+        sys.stdout.write(" CHECK!\n")
+    return namesToReturn
+
+#Input: The two Bedgraphs files names
+def createBWFromBedGraph(bedgraphFiles):
+    namesToReturn = []
+    for file in bedgraphFiles:
+        sys.stdout.write("Creating BigWig file for " + file + ":")
+        BWFile = BigWig_handling.createBigWigFromBEdGraph(file, Configs.FILE_CHROM_SIZES)
+        namesToReturn.append(BWFile)
+        sys.stdout.write(" CHECK!\n")

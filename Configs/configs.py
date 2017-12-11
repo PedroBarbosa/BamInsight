@@ -20,6 +20,7 @@ class Configs:
     # FINAL DIRECTORY ARGUMENTS
     ARG_LONG_LABEL = 'To define the long label to be present in UCSC upload files (default: BAM file name, if given; Otherwise, this parameter need to be defined)'
     ARG_SHORT_LBAEL = 'To define the short label to be present in UCSC ulpoad files (default: equal to -long_label)'
+    ARG_EMAIL = 'It is necessary to input your email to link to your sample. It is mandatory'
     ARG_ADD_BAM = 'If you want to include the BAM file in the final directory, to load the reads in genome browser'
 
     # FTP SERVER ARGUMENTS
@@ -47,5 +48,15 @@ class Configs:
     ERR_DIFFERENT_NUMBER_BAM_LONG_LABEL = 'Number of Long Label and BAM Files given is different.'
     ERR_DIFFERENT_NUMBER_LONG_SHORT_LABELS = 'Number of Long and Short Labels is different.'
 
+    #Final DIrectory
+    ERR_VALID_MAIL = 'Please define a valid email.'
+
     # FTP Connection Failure
     ERR_FTP_CONNECTION_FAILURE = 'Error in FTP Server Connection. Verify the FTP name given'
+
+    #####################################################################################################
+    #                                       Names of Created Files                                      #
+    #####################################################################################################
+
+    FILE_CHROM_SIZES = "chrom.sizes"
+    FILE_SHORT_CHROM_SIZES = "short.chrom.sizes"
