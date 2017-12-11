@@ -111,3 +111,4 @@ def createBWFromBedGraph(bedgraphFiles):
         BWFile = BigWig_handling.createBigWigFromBEdGraph(file, Configs.FILE_CHROM_SIZES)
         namesToReturn.append(BWFile)
         sys.stdout.write(" CHECK!\n")
+    return namesToReturn
