@@ -6,7 +6,7 @@ setup(
     packages=["Main", "Configs"],    # top-level python modules you can import like
                                 #   'import foo'
     dependency_links = [],      # custom links to a specific project
-    install_requires=['pandas','pybedtools','pyBigWig=0.3.6', 'pysam', 'setuptools'],
+    install_requires=['pandas','pybedtools', 'pysam', 'setuptools'],
     extras_require={},      # optional features that other packages can require
                             #   like 'helloworld[foo]'
     package_data = {},

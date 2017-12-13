@@ -14,6 +14,10 @@ RUN wget https://github.com/arq5x/bedtools2/releases/download/v2.27.0/bedtools-2
 
 RUN apt-get install -y liblzma-dev libcurl4-gnutls-dev python-dev
 
+RUN apt-get install -y python-pip python-dev build-essential 
+
+RUN pip install pyBigWig
+
 RUN wget https://github.com/rluis/BamInsight/archive/master.zip && \
 	unzip master && \
 	cd BamInsight-master && \
