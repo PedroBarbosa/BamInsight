@@ -1,12 +1,12 @@
 from setuptools import setup
-
+from Configs import configs
 setup(
     name = "BamInsight",        # what you want to call the archive/egg
-    version = "0.1",
+    version = configs.Configs.ARG_BAMINSIGHT_VERSION,
     packages=["Main", "Configs"],    # top-level python modules you can import like
                                 #   'import foo'
     dependency_links = [],      # custom links to a specific project
-    install_requires=['pandas','pybedtools','pyBigWig', 'pysam', 'setuptools'],
+    install_requires=['pandas','pybedtools','pyBigWig=0.3.6', 'pysam', 'setuptools'],
     extras_require={},      # optional features that other packages can require
                             #   like 'helloworld[foo]'
     package_data = {},
