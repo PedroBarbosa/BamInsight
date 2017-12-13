@@ -7,14 +7,14 @@
 # Modules Required by BamInsight System module
 import main
 import UCSCFiles
-
+import os
 #######################################################################
 #            GLOBAL VARIABLES DEFINED DURING EXECUTION                #
 #######################################################################
 
 finalBW_F = ""
 finalBW_R = ""
-
+startDirectory=os.getcwd()
 
 
 
@@ -48,4 +48,15 @@ def system():
         #Write TrackDB of Final Files
         UCSCFiles.writeTrackDB(args.long_label[enum], args.short_label[enum], finalBW_F, finalBW_R, args.create_dir)
 
-system()
+
+        #Remove Intermediate Files
+        main.removeIntermediateFiles(os.getcwd())
+
+        #Move to Starting Directory to send it to FTP Server
+        os.chdir(startDirectory)
+        # Send Final Directory to FTP_server
+        main.mainSendDirectoryToFTPServer(args.long_label[enum], args.host_FTP, args.user_FTP, args.password_FTP,
+                                          args.port_FTP,args.path_FTP)
+
+    os.remove('chrom.sizes')
+    os.remove('short.chrom.sizes')

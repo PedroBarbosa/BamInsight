@@ -5,6 +5,7 @@ import BAM_handling
 import download_chr_file
 import bedgraph_handling
 import BigWig_handling
+import FTPConnections
 from Configs.configs import Configs
 
 #This function call inputs fucntion, and then check the arguments given
@@ -39,7 +40,7 @@ def argsNcheckers():
     # Checking FTP Server
     if inputs.isFTPServerGiven(args.host_FTP):
         sys.stdout.write("Checking FTP Server Connection:")
-        inputs.checkConnectionFTP(args.host_FTP)
+        inputs.checkConnectionFTP(args.host_FTP,args.user_FTP,args.password_FTP,args.port_FTP)
         sys.stdout.write(" CHECK!\n")
 
     return args
@@ -112,3 +113,14 @@ def createBWFromBedGraph(bedgraphFiles):
         namesToReturn.append(BWFile)
         sys.stdout.write(" CHECK!\n")
     return namesToReturn
+
+def mainSendDirectoryToFTPServer(dirName,FTPHost,FTPUser="",FTPPassword="",FTPPort=20041,FTPPath=""):
+    if FTPHost != "":
+        FTPConnections.sendDirectoryToFTPServer(dirName,FTPHost,FTPUser,FTPPassword,FTPPath,FTPPort)
+
+
+def removeIntermediateFiles(path):
+    for item in os.listdir(path):
+        if item.endswith(".bam") or item.endswith(".bedgraph"):
+            os.remove(item)
+

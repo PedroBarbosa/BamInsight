@@ -24,7 +24,10 @@ class Configs:
     ARG_ADD_BAM = 'If you want to include the BAM file in the final directory, to load the reads in genome browser'
 
     # FTP SERVER ARGUMENTS
-    ARG_FTP_SERVER = 'If you want to send the final directory with all contents to be loaded by UCSC Genome Browser to your FTP Server, you have to define here the host name, with user and password if applicable.'
+    ARG_FTP_HOST = 'If you want to send the final directory created to your FTP server, you have to input here the host name.'
+    ARG_FTP_USER = 'If FTP Server has is protected by user/password login you should define this variable with your user name to login'
+    ARG_FTP_PASSWORD = 'If FTP Server has is protected by user/password login you should define this variable with your password to login'
+    ARG_FTP_PORT = 'Default port of access is 40021. If your FTP server is diferent please input it here.'
     ARG_FTP_PATH = 'The path in your ftp server to upload the final directory'
 
     # Global Software Options

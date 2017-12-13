@@ -1,29 +1,33 @@
 import urllib2
-import ftplib
-
+import os
 
 #Check if connection to FTP Server is possible.
-def tryConnectionToFTP(FTP_url):
+def tryConnectionToFTP(FTPHOST,FTPUser="",FTPPassword = "",FTPPort = 40021):
     try:
-        urllib2.urlopen(FTP_url, timeout=1)
+        if FTPPassword != "":
+            link = ':'
+        else:
+            link = ""
+        FTP_url = 'ftp://' + FTPUser+link+FTPPassword +'@' + FTPHOST + ":" + str(FTPPort)
+        server = urllib2.urlopen(FTP_url, timeout=1)
+        server.close()
         return True
     except urllib2.URLError as err:
         return False
 
-#def sendFinalDirectory(ftpServer,user,password):
-    #a_host = FTPHost.connect('ftp://immftp01.fm.ul.pt:40021/')
-    #oc.login('mcfonsecaftp', 'Lark699-evan')
+
+def sendDirectoryToFTPServer(directoryName,FTPHOST,FTPUser="",FTPPassword = "",FTPPath="",FTPPort = 40021):
+    if FTPPassword != "":
+        link = ':'
+    else:
+        link =""
+
+    print str(FTPPort)
+    os.system('find ' + directoryName + ' -type f -exec curl --ftp-create-dirs  -T {} ftp://' + FTPUser+link+FTPPassword +
+              '@'+ FTPHOST + ":" + str(FTPPort) + '/' + FTPPath + '{} \;')
 
 
 
-#import ftplib
 
-#sftp = ftplib.FTP('ftp://immftp01.fm.ul.pt','mcfonsecaftp','Lark699-evan') # Connect
-##fp = open('todo.txt','rb') # file to send
-##sftp.storbinary('STOR todo.txt', fp) # Send the file
-
-#fp.close() # Close file and FTP
-#sftp.quit()
-#ftp://mcfonsecaftp:Lark699%2Devan@imm.fm.ul.pt:40021/
-
-#sendFinalDirectory('a','b','c')
+#sendDirectoryToFTPServer('immftp01.fm.ul.pt',FTPUser="mcfonsecaftp"
+#                               ,FTPPassword="Lark699%2Devan")

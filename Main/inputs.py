@@ -35,8 +35,11 @@ def entry_inputs():
 
     #FTP SERVER ARGUMENTS
     ftp_server_args = parser.add_argument_group('FTP Server Arguments')
-    ftp_server_args.add_argument('-HOST_FTP_SERVER', dest='host_FTP', help=Configs.ARG_FTP_SERVER)
-    ftp_server_args.add_argument('-FTP_Path', dest='ftp_path', default="" , help=Configs.ARG_FTP_PATH)
+    ftp_server_args.add_argument('-FTPHOST', dest='host_FTP', help=Configs.ARG_FTP_HOST, default="")
+    ftp_server_args.add_argument('-FTPUser', dest='user_FTP', help=Configs.ARG_FTP_USER, default ="")
+    ftp_server_args.add_argument('-FTPPassword', dest='password_FTP', help=Configs.ARG_FTP_PASSWORD, default ="")
+    ftp_server_args.add_argument('-FTPPort', dest='port_FTP', help=Configs.ARG_FTP_PORT, default = 40021)
+    ftp_server_args.add_argument('-FTPPath', dest='path_FTP', default="" , help=Configs.ARG_FTP_PATH)
 
     #Global Software Options
     run_phases_args = parser.add_argument_group('Global Software Options')
@@ -155,8 +158,8 @@ def isFTPServerGiven(FTPServer):
     if FTPServer != None:
         return True
 
-def checkConnectionFTP(FTP_server):
-    if not FTPConnections.tryConnectionToFTP(FTP_server):
+def checkConnectionFTP(FTPHOST,FTPUser="",FTPPassword = "",FTPPort = 40021):
+    if not FTPConnections.tryConnectionToFTP(FTPHOST,FTPUser,FTPPassword,FTPPort):
         raise ValueError(Configs.ERR_FTP_CONNECTION_FAILURE)
 
 ###################################################################
