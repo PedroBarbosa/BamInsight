@@ -1,6 +1,6 @@
 class Configs:
 
-    ARG_BAMINSIGHT_VERSION = 'BamInsight 0.2'
+    ARG_BAMINSIGHT_VERSION = 'BamInsight 0.2.1'
 
     ####################################################################################
     #### Strings presents in help of software, when you run "baminsight -h" command ####

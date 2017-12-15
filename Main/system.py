@@ -42,7 +42,7 @@ def system():
         BedGraphsCreated = main.createBedGraph(NamesFilesPerStrand, ReadsPerStrand)
 
         #Create BigWigs
-        BWnames = main.createBWFromBedGraph(BedGraphsCreated)
+        BWnames = main.createBWFromBedGraph(BedGraphsCreated,args.name[enum])
         finalBW_F, finalBW_R = BWnames[0] , BWnames[1]
 
         #Write TrackDB of Final Files
@@ -60,4 +60,3 @@ def system():
 
     os.remove('chrom.sizes')
     os.remove('short.chrom.sizes')
-

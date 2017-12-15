@@ -105,11 +105,11 @@ def createBedGraph(NamesFilesPerStrand,ReadsPerStrand):
     return namesToReturn
 
 #Input: The two Bedgraphs files names
-def createBWFromBedGraph(bedgraphFiles):
+def createBWFromBedGraph(bedgraphFiles, bamFile):
     namesToReturn = []
     for file in bedgraphFiles:
         sys.stdout.write("Creating BigWig file for " + file + ":")
-        BWFile = BigWig_handling.createBigWigFromBEdGraph(file, Configs.FILE_CHROM_SIZES)
+        BWFile = BigWig_handling.createBigWigFromBEdGraph(file, bamFile)
         namesToReturn.append(BWFile)
         sys.stdout.write(" CHECK!\n")
     return namesToReturn
