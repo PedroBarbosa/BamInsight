@@ -25,9 +25,3 @@ def sendDirectoryToFTPServer(directoryName,FTPHOST,FTPUser="",FTPPassword = "",F
     print str(FTPPort)
     os.system('find ' + directoryName + ' -type f -exec curl --ftp-create-dirs  -T {} ftp://' + FTPUser+link+FTPPassword +
               '@'+ FTPHOST + ":" + str(FTPPort) + '/' + FTPPath + '{} \;')
-
-
-
-
-#sendDirectoryToFTPServer('immftp01.fm.ul.pt',FTPUser="mcfonsecaftp"
-#                               ,FTPPassword="Lark699%2Devan")

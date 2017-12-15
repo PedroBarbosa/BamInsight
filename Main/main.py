@@ -97,8 +97,8 @@ def createBedGraph(NamesFilesPerStrand,ReadsPerStrand):
         if enum == 0: strand = "+"
         if enum == 1: strand = "-"
         bedgraphFile = bedgraph_handling.createBedGraphFile(StrandBamFile)
-        bedgraph_handling.sortBedFile(bedgraphFile)
         bedgraph_handling.applySclaingFactor(bedgraphFile,ReadsPerStrand[enum],strand)
+        bedgraph_handling.sortBedFile(bedgraphFile)
         #bedgraph_handling.writeHeader(bedgraphFile,os.path.splitext(StrandBamFile)[0])
         namesToReturn.append(bedgraphFile)
         sys.stdout.write(" CHECK!\n")
@@ -123,4 +123,3 @@ def removeIntermediateFiles(path):
     for item in os.listdir(path):
         if item.endswith(".bam") or item.endswith(".bedgraph"):
             os.remove(item)
-
