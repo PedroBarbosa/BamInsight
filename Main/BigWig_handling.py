@@ -16,8 +16,9 @@ def createBigWigFromBEdGraph(bedgraphFile,bamFile):
 
 def prepareBigWigHeader(bamFile):
     header = BAM_handling.getHeader(bamFile)
-    tuples = [(y.split("\t")[1].strip("SN:"),y.split("\t")[2].strip("LN:")) for y in [x for x in header.split("\n")if x.startswith("@SQ")]]
+    tuples = [(y.split("\t")[1].strip("SN:"),int(y.split("\t")[2].strip("LN:"))) for y in [x for x in header.split("\n")if x.startswith("@SQ")]]
     return tuples
+
 
 def prepareVeluesToBigWig(bedgraphFile):
     bedgraph = pandas.read_csv(bedgraphFile,sep="\t")
