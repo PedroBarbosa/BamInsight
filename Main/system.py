@@ -60,3 +60,4 @@ def system():
 
     os.remove('chrom.sizes')
     os.remove('short.chrom.sizes')
+

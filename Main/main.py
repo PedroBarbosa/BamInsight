@@ -116,7 +116,7 @@ def createBWFromBedGraph(bedgraphFiles, bamFile):
 
 def mainSendDirectoryToFTPServer(dirName,FTPHost,FTPUser="",FTPPassword="",FTPPort=20041,FTPPath=""):
     if FTPHost != "":
-        FTPConnections.sendDirectoryToFTPServer(dirName,FTPHost,FTPUser,FTPPassword,FTPPath,FTPPort)
+        FTPConnections.sendDirectorytoFTP(dirName,FTPHost,FTPUser,FTPPassword,FTPPort,FTPPath)
 
 
 def removeIntermediateFiles(path):
