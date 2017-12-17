@@ -68,4 +68,5 @@ def sendDirectorytoFTP(DirName,FTPHost,FTPUser,FTPPassword,FTPPort,FTPPath="/"):
         for name in files:
             allFiles.append(os.path.join(root, name))
     for file in allFiles:
+        print file
         sendFiletoFTP(file,FTPHost,FTPUser,FTPPassword,FTPPort,FTPPath)
