@@ -85,7 +85,7 @@ baminsight stranded hg38 ruisergiolusi@gmail.com Rnaseq_rep1_HelaS3.bam -FF 83,1
 
 Picture below sum-up this mode.
 
-![alt text](workflow_Stranded.png)
+![alt text](Configs/Pictures/workflow_Stranded.png)
 
 Fistly, there is three positional arguments for baminsight:
 
@@ -161,19 +161,19 @@ files generated in bamInsight, to  <cite>[UCSC Genome Browser][2]</cite>.
 **2** - Click on _**My Data**_ > _**MySessions**_ .
  
 
-![alt text](BG1_explained.png)
+![alt text](Configs/Pictures/BG1_explained.png)
 
 ##### STEP 2
 
 **3** - Create a UCSC account. If you have have just Login.
 
-![alt text](GB2_explained.png)
+![alt text](Configs/Pictures/GB2_explained.png)
 
 ##### STEP 3
 
 **4** - Click on _**Track Hubs**_
 
-![alt text](GB3_explained.png)
+![alt text](Configs/Pictures/GB3_explained.png)
 
 ##### STEP 4
 
@@ -190,7 +190,7 @@ End the process clicking on Add Hub.
 
 **7** - Visualize your track in clicking on _**Genome Browser**_
 
-![alt text](GB4_explained.png)
+![alt text](Configs/Pictures/GB4_explained.png)
 
 
 ### Baminsight Original Mode
@@ -199,7 +199,7 @@ _**bamInsight Original**_ Mode only differ from _**Stranded Mode**_ in the first
 while Stranded mode divide the given bam file in forward and reverse reads, this mode keep 
 the file as the _Original_, as can be seen in the next picture. 
 
-![alt text](workflow_Original.png)
+![alt text](Configs/Pictures/workflow_Original.png)
 
 Then, It is presented a example command:
 
