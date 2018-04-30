@@ -7,7 +7,7 @@ class Configs:
     ####################################################################################
 
     # BASIC ARGUMENTS
-    ARG_GLOBAL_DESCRIPTION = 'A wrapper tool which help which help you in the uploading process to Genome Browser!'
+    ARG_GLOBAL_DESCRIPTION = 'A wrapper tool which help in the uploading process to Genome Browser!'
     ARG_GENOME = 'Genome reference of your organism; Ex: hg38'
     ARG_NAMES = 'Path to .bam files, separeted by whitespaces'
 

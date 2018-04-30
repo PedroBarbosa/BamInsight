@@ -18,7 +18,7 @@ setup(
     url = "https://github.com/rluis/BamInsight",
     entry_points = {
         "console_scripts": [        # command-line executables to expose
-            "baminsight = Main.system:system",
+            "baminsight stranded= Main.system:system",
         ],
         "gui_scripts": []       # GUI executables (creates pyw on Windows)
     }
