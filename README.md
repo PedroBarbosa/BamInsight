@@ -11,14 +11,22 @@ A Useful bioinformatic tool to quickly vizualize your data in Genome Browser UCS
 Table of Contents
 =================
 
-  * [Installation](#installation)
+  * [Installation](#Installation)
+  
     * [Classical Installation](###Classical Installation)
+    
     * [Docker Image Usage](###Docker Image)
+    
   * [Usage](#Usage)
+  
     * [Baminsight Stranded Mode](###Baminsight Stranded Mode)
+    
     * [Baminsight Original Mode](###Baminsight Original Mode)
+    
   * [Contact](#Contact)
+  
 #Installation
+
 ###Classical Installation 
 
 Type the following commands to install BamInsight:
@@ -67,7 +75,7 @@ In that way, We decided to create BamInsight Software. A software that makes by 
 part from a bam file to visualize your dataset in UCSC genome Browser, dealing with all intermediate 
 files and bridging the gap existing right now.
 
-###_**Baminsight Stranded**_ Mode
+###Baminsight Stranded Mode
 
 If your dataset is Stranded (RNA-seq fr-firstranded, fr-secondsetranded, or other), 
 you should use this baminsight mode to visualize on genome browser one track with forward and reverse
@@ -190,7 +198,7 @@ End the process clicking on Add Hub.
 ![alt text](GB4_explained.png)
 
 
-###_**Baminsight Original**_ Mode
+###Baminsight Original Mode
 
 _**bamInsight Original**_ Mode only differ from _**Stranded Mode**_ in the first part of the process.
 while Stranded mode divide the given bam file in forward and reverse reads, this mode keep 
