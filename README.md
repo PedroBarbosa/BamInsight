@@ -11,19 +11,13 @@ A Useful bioinformatic tool to quickly vizualize your data in Genome Browser UCS
 Table of Contents
 =================
 
-  * [Installation](#Installation)
-  
+* [Installation](#Installation)
     * [Classical Installation](###Classical Installation)
-    
     * [Docker Image Usage](###Docker Image)
-    
-  * [Usage](#Usage)
-  
+* [Usage](#Usage)
     * [Baminsight Stranded Mode](###Baminsight Stranded Mode)
-    
     * [Baminsight Original Mode](###Baminsight Original Mode)
-    
-  * [Contact](#Contact)
+* [Contact](#Contact)
   
 #Installation
 
