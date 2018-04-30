@@ -13,11 +13,11 @@ Table of Contents
 
 * [Installation](#installation)
     * [Classical Installation](#classical-installation)
-    * [Docker Image Usage](###Docker Image)
-* [Usage](#Usage)
-    * [Baminsight Stranded Mode](###Baminsight Stranded Mode)
-    * [Baminsight Original Mode](###Baminsight Original Mode)
-* [Contact](#Contact)
+    * [Docker Image Usage](#docker-image)
+* [Usage](#usage)
+    * [Baminsight Stranded Mode](#baminsight-stranded-mode)
+    * [Baminsight Original Mode](#baminsight-original-mode)
+* [Contact](#contact)
   
 ## Installation
 
@@ -39,7 +39,7 @@ Please ensure you have installed the python packages refered below:
 * [Pysam](https://github.com/pysam-developers/pysam/blob/master/doc/index.rst)
 * [Setuptools](https://pypi.org/project/setuptools/)
 
-###Docker Image
+### Docker Image Usage
 
 Use of our docker image can be a more user-friendly way to have a bamInsight experience:
 
@@ -49,7 +49,7 @@ Use of our docker image can be a more user-friendly way to have a bamInsight exp
 
 There are already inside all the necessary packages to run the software. 
 
-#Usage
+# Usage
 
 Visualization of NGSs reads of some genes is a good
 form to understand the dataset you have on hands 
@@ -70,7 +70,7 @@ In that way, We decided to create BamInsight Software. A software that makes by 
 part from a bam file to visualize your dataset in UCSC genome Browser, dealing with all intermediate 
 files and bridging the gap existing right now.
 
-###Baminsight Stranded Mode
+### Baminsight Stranded Mode
 
 If your dataset is Stranded (RNA-seq fr-firstranded, fr-secondsetranded, or other), 
 you should use this baminsight mode to visualize on genome browser one track with forward and reverse
@@ -193,7 +193,7 @@ End the process clicking on Add Hub.
 ![alt text](GB4_explained.png)
 
 
-###Baminsight Original Mode
+### Baminsight Original Mode
 
 _**bamInsight Original**_ Mode only differ from _**Stranded Mode**_ in the first part of the process.
 while Stranded mode divide the given bam file in forward and reverse reads, this mode keep 
