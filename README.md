@@ -154,7 +154,7 @@ Baminsight work reach the end. Now is just follow the next few steps to upload t
 files generated in bamInsight, to  <cite>[UCSC Genome Browser][2]</cite>.
 
 
-#####STEP 1
+##### STEP 1
 
 **1** - On a web browser open <cite>[UCSC Genome Browser][2]</cite> website - https://genome-euro.ucsc.edu/.
 
@@ -163,19 +163,19 @@ files generated in bamInsight, to  <cite>[UCSC Genome Browser][2]</cite>.
 
 ![alt text](BG1_explained.png)
 
-#####STEP 2
+##### STEP 2
 
 **3** - Create a UCSC account. If you have have just Login.
 
 ![alt text](GB2_explained.png)
 
-#####STEP 3
+##### STEP 3
 
 **4** - Click on _**Track Hubs**_
 
 ![alt text](GB3_explained.png)
 
-#####STEP 4
+##### STEP 4
 
 **5** - Select _**My Hubs**_.
 
@@ -212,7 +212,7 @@ baminsight original hg38 ruisergiolusi@gmail.com Chipseq_rep1_HelaS3.bam -add_ba
 # Contact
 I hope bamInsight could be so useful for you, than It is for me, in your bioinformatic daily tasks. 
 For more information, or in case of any doubt please open a new issue in github or send 
-me a [mail us](mailto:ruisergioluis@gmail.com).
+me a [private message](mailto:ruisergioluis@gmail.com).
 
 
 [1]:https://genomebiology.biomedcentral.com/articles/10.1186/s13059-016-0881-8
