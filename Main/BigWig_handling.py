@@ -1,24 +1,23 @@
 import pyBigWig
 import pandas
 import os
+import BAM_handling
 
-#Input:Read a bedgraph file and Chromossomal Size File
+#Input:Read a bedgraph file and Bam File Given
 #Output:BigWig File
-def createBigWigFromBEdGraph(bedgraphFile,chrSizesFile):
+def createBigWigFromBEdGraph(bedgraphFile,bamFile):
     basefile = os.path.splitext(bedgraphFile)[0]
     #Open a new BigWigFile
     bw = pyBigWig.open(basefile + ".bw", "w")
-    bw.addHeader(prepareBigWigHeader(chrSizesFile))
+    bw.addHeader(prepareBigWigHeader(bamFile))
     chr, start, end, cov = prepareVeluesToBigWig(bedgraphFile)
     bw.addEntries(chr,start,ends=end,values=cov)
     return basefile + ".bw"
 
-def prepareBigWigHeader(chrSizesFile):
-    with open(chrSizesFile) as f:
-        allChr = map(lambda s: s.strip(), f.readlines())
-    tuples = [tuple([s[0], int(s[1])]) for s in [tuple(x.split("\t")) for x in allChr]]
-    tuples.sort(key=lambda x: x[0])
-    return tuples
+def prepareBigWigHeader(bamFile):
+    header = BAM_handling.getHeader(bamFile)
+    tuples = [(y.split("\t")[1].strip("SN:"),int(y.split("\t")[2].strip("LN:"))) for y in [x for x in header.split("\n")if x.startswith("@SQ")]]
+    return sorted(tuples, key=lambda tup: tup[0])
 
 
 def prepareVeluesToBigWig(bedgraphFile):

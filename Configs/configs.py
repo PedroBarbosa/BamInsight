@@ -1,5 +1,6 @@
 class Configs:
 
+
     ARG_BAMINSIGHT_VERSION = 'BamInsight 1.0' #version 1.0 has a big difference for the one before, allowing stranded
                                               #and not stranded Data.
 

@@ -5,7 +5,9 @@ setup(
     version = configs.Configs.ARG_BAMINSIGHT_VERSION,
     packages=["Main", "Configs"],    # top-level python modules you can import like
     dependency_links = [],      # custom links to a specific project
+
     install_requires=['pandas','pybedtools','pyBigWig', 'pysam', 'setuptools'],
+
     extras_require={},      # optional features that other packages can require
     package_data = {},
     author="Rui Luis",
