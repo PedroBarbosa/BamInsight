@@ -22,5 +22,4 @@ RUN wget https://github.com/rluis/BamInsight/archive/master.zip && \
 	unzip master && \
 	cd BamInsight-master && \
 	python setup.py build && \
-	python setup.py install 
-	
+	python setup.py install

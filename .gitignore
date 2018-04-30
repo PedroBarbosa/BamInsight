@@ -103,5 +103,4 @@ ENV/
 # PyCharm
 .idea/
 
-*png
 *pptx

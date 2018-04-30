@@ -11,7 +11,9 @@ def entry_inputs():
     parser = argparse.ArgumentParser(description=Configs.ARG_GLOBAL_DESCRIPTION)
 
     #BASIC ARGUMENTS
+    parser.add_argument('SubCommand', choices=['stranded', 'original'], help= Configs.ARG_SUB_COMMAND)
     parser.add_argument('genome',  help = Configs.ARG_GENOME)
+    parser.add_argument('email', default = "", help=Configs.ARG_EMAIL)
 
 
     basic_arg = parser.add_argument_group('Basic Arguments')
@@ -29,7 +31,6 @@ def entry_inputs():
     final_dir_args= parser.add_argument_group('Final Directory Arguments')
     final_dir_args.add_argument('-long_label', dest='long_label', nargs='+', help = Configs.ARG_LONG_LABEL, default=[] )
     final_dir_args.add_argument('-short_label', dest='short_label', nargs='+', help = Configs.ARG_SHORT_LBAEL, default=[])
-    final_dir_args.add_argument('--email', dest='email', default = "", help=Configs.ARG_EMAIL)
     final_dir_args.add_argument('-add_bam', dest='add_bam', action='store_true', default= False, help = Configs.ARG_ADD_BAM)
 
 
@@ -81,6 +82,13 @@ def checkFilesSource(BAMList):
     for file in BAMList:
         if not os.path.isfile(file):
             raise ValueError(Configs.ERR_BAM_NOT_EXIST)
+
+def defineBAMsAbsolutePath(BAMList):
+    for file in BAMList:
+        BAMLIST = []
+        BAMLIST.append(os.path.realpath(file))
+    return BAMLIST
+
 
 #Define basenames (without the path, like: filename.bam)
 def defineBasenamesBAMs(BAMList):
@@ -155,7 +163,7 @@ def checkEmail(email,create_dir):
 ###################################################################
 
 def isFTPServerGiven(FTPServer):
-    if FTPServer != None:
+    if FTPServer != "":
         return True
 
 def checkConnectionFTP(FTPHOST,FTPUser="",FTPPassword = "",FTPPort = 40021):
