@@ -12,7 +12,7 @@ Table of Contents
 =================
 
 * [Installation](#installation)
-    * [Classical Installation](Classical Installation)
+    * [Classical Installation](#classical-installation)
     * [Docker Image Usage](###Docker Image)
 * [Usage](#Usage)
     * [Baminsight Stranded Mode](###Baminsight Stranded Mode)
@@ -22,7 +22,7 @@ Table of Contents
 ## Installation
 
 
-###Classical Installation 
+### Classical Installation 
 
 Type the following commands to install BamInsight:
 
