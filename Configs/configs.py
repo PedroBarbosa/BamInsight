@@ -1,6 +1,7 @@
 class Configs:
 
-    ARG_BAMINSIGHT_VERSION = 'BamInsight 0.2'
+    ARG_BAMINSIGHT_VERSION = 'BamInsight 1.0' #version 1.0 has a big difference for the one before, allowing stranded
+                                              #and not stranded Data.
 
     ####################################################################################
     #### Strings presents in help of software, when you run "baminsight -h" command ####
@@ -8,6 +9,7 @@ class Configs:
 
     # BASIC ARGUMENTS
     ARG_GLOBAL_DESCRIPTION = 'A wrapper tool which help in the uploading process to Genome Browser!'
+    ARG_SUB_COMMAND = 'Define the Sub command to be used. It can only be Stranded or Original. stranded - When your data is stranded and you pretend to plot It in that way. original - For unstranded data. The software doesn\'t divide reads per strand'
     ARG_GENOME = 'Genome reference of your organism; Ex: hg38'
     ARG_NAMES = 'Path to .bam files, separeted by whitespaces'
 

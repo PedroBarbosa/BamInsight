@@ -22,6 +22,7 @@ def argsNcheckers():
     sys.stdout.write("Checking Files Constraints:")
     inputs.bamNumberCheck(args.name)
     inputs.checkFilesSource(args.name)
+    args.name = inputs.defineBAMsAbsolutePath(args.name)
     args.basename = inputs.defineBasenamesBAMs(args.name)
 
     # Checking Long Labels
@@ -88,6 +89,17 @@ def splitBamFilePerStrands(BAMfile, Basenamefile, Flags_F, opposite_F, Flags_R, 
         ReadsPerStrand.append(BAM_handling.countReads(Strand+"_"+os.path.splitext(Basenamefile)[0]+"_sorted.bam"))
     sys.stdout.write(" CHECK!\n")
     return NamesFilesPerStrand, ReadsPerStrand
+
+
+def TreatOriginalBamFile(BamFile,Basename):
+    sys.stdout.write("Preparing " + BamFile + " file:")
+    BAM_handling.sortBamFile(BamFile)
+    sys.stdout.write(" CHECK!\n")
+
+    return [os.path.splitext(Basename)[0] + "_sorted.bam"], [BAM_handling.countReads(os.path.splitext(Basename)[0] + "_sorted.bam")]
+
+
+
 
 def createBedGraph(NamesFilesPerStrand,ReadsPerStrand):
 
