@@ -20,6 +20,7 @@ Table of Contents
 * [Contact](#Contact)
   
 #Installation
+----------
 
 ###Classical Installation 
 
