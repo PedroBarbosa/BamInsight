@@ -209,7 +209,7 @@ baminsight original hg38 ruisergiolusi@gmail.com Chipseq_rep1_HelaS3.bam -add_ba
 -long_label HelaS3_Rep1 -short_label HeLa1  
 ```
 
-#Contact
+# Contact
 I hope bamInsight could be so useful for you, than It is for me, in your bioinformatic daily tasks. 
 For more information, or in case of any doubt please open a new issue in github or send 
 me a [mail us](mailto:ruisergioluis@gmail.com).
