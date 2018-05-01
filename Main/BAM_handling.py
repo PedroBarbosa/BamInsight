@@ -22,6 +22,3 @@ def sortBamFile(inputFile):
 #Count the reads present in the BAM file
 def countReads(inputFile):
     return int(pysam.view("-c", inputFile).replace("\n",""))
-
-def getHeader(inputBamFile):
-    return pysam.view('-H', inputBamFile)
