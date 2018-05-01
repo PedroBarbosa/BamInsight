@@ -71,10 +71,8 @@ def system():
             # Create BedGraphs
             BedGraphCreated = main.createBedGraph(FileName, ReadsNumber)
 
-
             # Create BigWigs
             BWname = main.createBWFromBedGraph(BedGraphCreated)[0]
-
 
             #Write TrackDB of Final Files
             UCSCFiles.writeTrackDBforOriginal(args.long_label[enum], args.short_label[enum], BWname, args.create_dir)
@@ -91,4 +89,3 @@ def system():
 
     os.remove('chrom.sizes')
     os.remove('short.chrom.sizes')
-
