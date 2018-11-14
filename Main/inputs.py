@@ -18,6 +18,8 @@ def entry_inputs():
 
     basic_arg = parser.add_argument_group('Basic Arguments')
     basic_arg.add_argument('--names', metavar='name1 name2',dest='name',  nargs='+', help = Configs.ARG_NAMES, default= [])
+    basic_arg.add_argument('--cpus', dest='cpus', help = Configs.ARG_CPUS,default="1")
+
     parser.add_argument('--basenames', dest='basename', nargs='+', help=argparse.SUPPRESS)
 
     #SAMTOOLS ARGUMENTS

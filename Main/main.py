@@ -62,7 +62,21 @@ def createChrLengthFiles(genome):
     sys.stdout.write(" CHECK!\n")
 
 
-def splitBamFilePerStrands(BAMfile, Basenamefile, Flags_F, opposite_F, Flags_R, opposite_R):
+####################################
+
+
+def createChrLengthFilesBAMFile(bamFile):
+    sys.stdout.write("Downloading Chr Sizes Files used by BamInsight:")
+    with open(Configs.FILE_CHROM_SIZES, "w") as f:
+        for e in BAM_handling.chrLengthFromHeader(bamFile):
+            f.write('{}\t{}\n'.format(e[0], e[1]))
+        f.close()
+    Configs.FILE_CHROM_SIZES = os.path.abspath(Configs.FILE_CHROM_SIZES)
+    sys.stdout.write(" CHECK!\n")
+
+
+
+def splitBamFilePerStrands(BAMfile, Basenamefile, Flags_F, opposite_F, Flags_R, opposite_R,cpus):
     sys.stdout.write("Splitting BAM file " + Basenamefile + ":")
     NamesFilesPerStrand, ReadsPerStrand  = [],[]
     for mainEnum,Flags_Strand in enumerate([Flags_F,Flags_R]):
@@ -72,28 +86,30 @@ def splitBamFilePerStrands(BAMfile, Basenamefile, Flags_F, opposite_F, Flags_R, 
         outFiles =[]
         for enum,flag in enumerate(Flags_Strand):
             outFiles.append(Strand + str(enum) + "_" + Basenamefile)
-            BAM_handling.createBamFlagFiltered(flag,oppositeFlag,Strand+str(enum)+"_"+Basenamefile,BAMfile)
+            BAM_handling.createBamFlagFiltered(flag,oppositeFlag,Strand+str(enum)+"_"+Basenamefile,BAMfile,cpus)
 
 
         # Merge BAM Files
         if len(Flags_F) > 1:
-            BAM_handling.mergeBamFiles(Strand+"_"+Basenamefile,outFiles)
+            BAM_handling.mergeBamFiles(Strand+"_"+Basenamefile,outFiles,cpus)
         else:
             os.rename(Strand + str(0)+"_" + Basenamefile , Strand +"_" + Basenamefile)
 
         #Sort BAM Files
-        BAM_handling.sortBamFile(Strand+"_"+Basenamefile)
+        BAM_handling.sortBamFile(Strand+"_"+Basenamefile,cpus)
 
+        #Create BAM index
+        BAM_handling.indexBamFfile(Strand+"_"+os.path.basename(os.path.splitext(Basenamefile)[0]) + "_sorted.bam"   )
 
         NamesFilesPerStrand.append(Strand+"_"+os.path.splitext(Basenamefile)[0]+"_sorted.bam")
-        ReadsPerStrand.append(BAM_handling.countReads(Strand+"_"+os.path.splitext(Basenamefile)[0]+"_sorted.bam"))
+        ReadsPerStrand.append(BAM_handling.countReads(Strand+"_"+os.path.splitext(Basenamefile)[0]+"_sorted.bam",cpus))
     sys.stdout.write(" CHECK!\n")
     return NamesFilesPerStrand, ReadsPerStrand
 
 
-def TreatOriginalBamFile(BamFile,Basename):
+def TreatOriginalBamFile(BamFile,Basename,cpus):
     sys.stdout.write("Preparing " + BamFile + " file:")
-    BAM_handling.sortBamFile(BamFile)
+    BAM_handling.sortBamFile(BamFile,cpus)
     sys.stdout.write(" CHECK!\n")
 
     return [os.path.splitext(Basename)[0] + "_sorted.bam"], [BAM_handling.countReads(os.path.splitext(Basename)[0] + "_sorted.bam")]
@@ -101,15 +117,14 @@ def TreatOriginalBamFile(BamFile,Basename):
 
 
 
-def createBedGraph(NamesFilesPerStrand,ReadsPerStrand):
-
+def createBedGraph(NamesFilesPerStrand,ReadsPerStrand,cpus):
     namesToReturn = []
     for enum,StrandBamFile in enumerate(NamesFilesPerStrand):
         sys.stdout.write("Creating BedGraph file for " + StrandBamFile + ":")
         if enum == 0: strand = "+"
         if enum == 1: strand = "-"
-        bedgraphFile = bedgraph_handling.createBedGraphFile(StrandBamFile)
-        bedgraph_handling.sortBedFile(bedgraphFile)
+        bedgraphFile = bedgraph_handling.createBedGraphFile(StrandBamFile,cpus)
+        #bedgraph_handling.sortBedFile(bedgraphFile)
         bedgraph_handling.applySclaingFactor(bedgraphFile,ReadsPerStrand[enum],strand)
         #bedgraph_handling.writeHeader(bedgraphFile,os.path.splitext(StrandBamFile)[0])
         namesToReturn.append(bedgraphFile)
@@ -133,6 +148,6 @@ def mainSendDirectoryToFTPServer(dirName,FTPHost,FTPUser="",FTPPassword="",FTPPo
 
 def removeIntermediateFiles(path):
     for item in os.listdir(path):
-        if item.endswith(".bam") or item.endswith(".bedgraph"):
+        if item.endswith(".bam") or item.endswith(".bedgraph") or item.endswith(".bai"):
             os.remove(item)
 

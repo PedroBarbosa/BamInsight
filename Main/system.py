@@ -21,13 +21,17 @@ def system():
     # accept the inputs and check their reliability
     args = main.argsNcheckers()
 
-    # create files of chromossome sizes
-    main.createChrLengthFiles(args.genome)
+
 
     # define Downstream Actions
     if args.SubCommand == "stranded":
 
         for enum,BamFile in enumerate(args.name):
+
+            # create files of chromossome sizes
+            # main.createChrLengthFiles(args.genome) (using FTP :not used anymore
+            main.createChrLengthFilesBAMFile(BamFile)
+
             #Preparing Final files
             UCSCFiles.createMainDirectory(args.long_label[enum], args.create_dir)
             UCSCFiles.writeGenomesFile(args.genome, args.create_dir)
@@ -35,11 +39,12 @@ def system():
             UCSCFiles.createGenomeDirectory(args.genome, args.create_dir)
 
 
+
             # Handling BAM file
             NamesFilesPerStrand, ReadsPerStrand =main.splitBamFilePerStrands(BamFile, args.basename[enum], args.flags_forward, args.not_flags_forward,
-                                            args.flags_reverse, args.not_flags_reverse)
+                                            args.flags_reverse, args.not_flags_reverse,args.cpus)
             #Create BedGraphs
-            BedGraphsCreated = main.createBedGraph(NamesFilesPerStrand, ReadsPerStrand)
+            BedGraphsCreated = main.createBedGraph(NamesFilesPerStrand, ReadsPerStrand,args.cpus)
 
             #Create BigWigs
             BWnames = main.createBWFromBedGraph(BedGraphsCreated)
@@ -66,10 +71,10 @@ def system():
             UCSCFiles.writeHub(args.long_label[enum], args.short_label[enum], args.email, args.create_dir)
             UCSCFiles.createGenomeDirectory(args.genome, args.create_dir)
 
-            FileName, ReadsNumber = main.TreatOriginalBamFile(args.name[enum],args.basename[enum])
+            FileName, ReadsNumber = main.TreatOriginalBamFile(args.name[enum],args.basename[enum], args.cpus)
 
             # Create BedGraphs
-            BedGraphCreated = main.createBedGraph(FileName, ReadsNumber)
+            BedGraphCreated = main.createBedGraph(FileName, ReadsNumber,args.cpus)
 
             # Create BigWigs
             BWname = main.createBWFromBedGraph(BedGraphCreated)[0]
@@ -88,4 +93,7 @@ def system():
 
 
     os.remove('chrom.sizes')
-    os.remove('short.chrom.sizes')
+    #os.remove('short.chrom.sizes')
+
+if __name__ == '__main__':
+    system()

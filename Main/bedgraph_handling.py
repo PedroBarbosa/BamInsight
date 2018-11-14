@@ -1,10 +1,12 @@
 import pybedtools
 import os
 import pandas
+from deeptools import bamCoverage
 
 #Create a BedGraph File From Bam file using GenomeCoverage of bedtools
 #Input: BamFIle SORTED
 #Output: Name of bedgraph file created
+"""
 def createBedGraphFile(bamFileSorted):
     basenameNoExtension = os.path.splitext(os.path.basename(bamFileSorted))[0]
     fullPath = os.path.abspath(bamFileSorted)
@@ -20,9 +22,20 @@ def createBedGraphFile(bamFileSorted):
 
 def sortBedFile(bedFile):
     fullPath = os.path.abspath(bedFile)
-    bedFileSorted = pybedtools.BedTool.sort(pybedtools.example_bedtool(fullPath))
-    with open(bedFile, 'w') as f:
-        f.write(str(bedFileSorted))
+    totalLines = []
+    with open(fullPath, "r") as f:
+        for line in f.readlines():
+            totalLines.append([line.split("\t")[0],line.split("\t")[1],line.split("\t")[2],line.split("\t")[3]])
+    totalLines = sorted(totalLines, key=lambda x : [x[0],x[1],x[2]])
+    with open('xxx.bedgrapth','w') as w:
+        for x in totalLines:
+            print x
+            print str(x)
+            w.write(str(x))
+    #bedFileSorted = pybedtools.BedTool.sort(pybedtools.example_bedtool(fullPath))
+    #with open(bedFile, 'w') as f:
+    #    f.write(str(bedFileSorted))
+"""
 
 def scalingFunction(cov_n,lenghtDataset,Strand):
     if Strand == "+": factor = 1
@@ -31,6 +44,17 @@ def scalingFunction(cov_n,lenghtDataset,Strand):
     return cov_n * 100000000 / lenghtDataset * factor
     # "for cycle" appropriated return
     #return str(float(float(cov_n) * 100000000 / int(lenghtDataset)) * factor) + "\n"
+
+def createBedGraphFile(bamFileSorted,cpus):
+    basenameNoExtension = os.path.splitext(os.path.basename(bamFileSorted))[0]
+    inputNameBAM = os.path.abspath(bamFileSorted)
+    outNameBW = basenameNoExtension + ".bedgraph"
+
+    args_bamCoverage = "-b {} -o {} --numberOfProcessors {} --binSize 1 " \
+                       "--outFileFormat bedgraph".format(inputNameBAM, outNameBW, cpus).split()
+
+    bamCoverage.main(args_bamCoverage)
+    return basenameNoExtension + ".bedgraph"
 
 
 def applySclaingFactor(BedgraphFile,lenghtDataset,Strand):
