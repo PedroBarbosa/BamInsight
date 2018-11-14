@@ -1,4 +1,3 @@
-import pybedtools
 import os
 import pandas
 from deeptools import bamCoverage
