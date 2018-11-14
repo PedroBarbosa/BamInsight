@@ -1,7 +1,7 @@
 class Configs:
 
 
-    ARG_BAMINSIGHT_VERSION = 'BamInsight 1.0' #version 1.0 has a big difference for the one before, allowing stranded
+    ARG_BAMINSIGHT_VERSION = '1.1' #version 1.0 has a big difference for the one before, allowing stranded
                                               #and not stranded Data.
 
     ####################################################################################
@@ -13,7 +13,7 @@ class Configs:
     ARG_SUB_COMMAND = 'Define the Sub command to be used. It can only be Stranded or Original. stranded - When your data is stranded and you pretend to plot It in that way. original - For unstranded data. The software doesn\'t divide reads per strand'
     ARG_GENOME = 'Genome reference of your organism; Ex: hg38'
     ARG_NAMES = 'Path to .bam files, separeted by whitespaces'
-
+    ARG_CPUS = 'Number of cpus/processors to use.'
     # SAMTOOLS ARGUMENTS
     ARG_FORWARD_FLAG = 'The pretended flags to select the wanted forward reads with:  samtools view -f <flag> file.bam (default: 83 and 163)'
     ARG_NOT_FORWARD_FLAG = 'If used, revert the flags in -FF, like:  samtools view -F <flag> file.bam (default: Not used )'
