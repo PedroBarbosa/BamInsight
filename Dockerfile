@@ -18,6 +18,10 @@ RUN apt-get install -y python-pip python-dev build-essential
 
 RUN pip install pyBigWig
 
+RUN pip install --upgrade setuptools
+RUN pip install --upgrade pip
+RUN pip install deeptools
+
 RUN wget https://github.com/rluis/BamInsight/archive/master.zip && \
 	unzip master && \
 	cd BamInsight-master && \
