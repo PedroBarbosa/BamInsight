@@ -1,6 +1,6 @@
 # BamInsight
 
-![GitHub package](https://img.shields.io/badge/BamInsight-v1.0-green.svg)
+![GitHub package](https://img.shields.io/badge/BamInsight-v1.1-green.svg)
 [![Language](http://img.shields.io/badge/Language-Python-yellow.svg)](https://www.python.org/)
 [![BSD license](https://img.shields.io/badge/License-BSD_3_Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![DockerHub](https://img.shields.io/badge/Docker-maintained-blue.svg)](https://hub.docker.com/r/rluis/baminsight/)

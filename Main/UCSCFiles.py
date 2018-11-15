@@ -49,5 +49,5 @@ def writeTrackDBforOriginal(long_label, short_label,BWFile,create_dirArg):
             f.write('track ' + short_label  + '\ntype bigWig 0 60000\nshortLabel ' + short_label + '\nlongLabel ' + \
                     long_label + '\nviewLimits -10000:10000\nvisibility full \
                         \nmaxHeightPixels 160:120:11\nwindowingFunction maximum \
-                        \nalwaysZero on\npriority 1.4\nautoScale on\nbigDataUrl '+ BWFile + '\ncolor 128,0,128')
+                        \nalwaysZero on\npriority 1.4\nautoScale on\nbigDataUrl '+ BWFile + '\ncolor 0,120,0')
         f.close()
