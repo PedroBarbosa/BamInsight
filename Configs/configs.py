@@ -1,7 +1,9 @@
 class Configs:
 
 
-    ARG_BAMINSIGHT_VERSION = '1.1' #version 1.0 has a big difference for the one before, allowing stranded
+
+    ARG_BAMINSIGHT_VERSION = '1.1.2' #version 1.0 has a big difference for the one before, allowing stranded
+
                                               #and not stranded Data.
 
     ####################################################################################

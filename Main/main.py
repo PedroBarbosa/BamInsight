@@ -110,11 +110,12 @@ def splitBamFilePerStrands(BAMfile, Basenamefile, Flags_F, opposite_F, Flags_R, 
 def TreatOriginalBamFile(BamFile,Basename,cpus):
     sys.stdout.write("Preparing " + BamFile + " file:")
     BAM_handling.sortBamFile(BamFile,cpus)
+
+    BAM_handling.indexBamFfile(os.path.basename(os.path.splitext(BamFile)[0]) + "_sorted.bam")
+
     sys.stdout.write(" CHECK!\n")
 
-    return [os.path.splitext(Basename)[0] + "_sorted.bam"], [BAM_handling.countReads(os.path.splitext(Basename)[0] + "_sorted.bam")]
-
-
+    return [os.path.splitext(Basename)[0] + "_sorted.bam"], [BAM_handling.countReads(os.path.splitext(Basename)[0] + "_sorted.bam",cpus)]
 
 
 def createBedGraph(NamesFilesPerStrand,ReadsPerStrand,cpus):
