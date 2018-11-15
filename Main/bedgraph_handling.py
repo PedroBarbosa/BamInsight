@@ -49,7 +49,7 @@ def createBedGraphFile(bamFileSorted,cpus):
     inputNameBAM = os.path.abspath(bamFileSorted)
     outNameBW = basenameNoExtension + ".bedgraph"
 
-    args_bamCoverage = "-b {} -o {} --numberOfProcessors {} --binSize 1 " \
+    args_bamCoverage = "-b {} -o {} --numberOfProcessors {} --binSize 1000 " \
                        "--outFileFormat bedgraph".format(inputNameBAM, outNameBW, cpus).split()
 
     bamCoverage.main(args_bamCoverage)

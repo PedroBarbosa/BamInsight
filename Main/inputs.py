@@ -86,16 +86,16 @@ def checkFilesSource(BAMList):
             raise ValueError(Configs.ERR_BAM_NOT_EXIST)
 
 def defineBAMsAbsolutePath(BAMList):
+    BAMLIST = []
     for file in BAMList:
-        BAMLIST = []
         BAMLIST.append(os.path.realpath(file))
     return BAMLIST
 
 
 #Define basenames (without the path, like: filename.bam)
 def defineBasenamesBAMs(BAMList):
+    basenameBAMLIST = []
     for file in BAMList:
-        basenameBAMLIST = []
         basenameBAMLIST.append(os.path.basename(file))
     return basenameBAMLIST
 

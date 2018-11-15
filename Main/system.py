@@ -22,7 +22,6 @@ def system():
     args = main.argsNcheckers()
 
 
-
     # define Downstream Actions
     if args.SubCommand == "stranded":
 
@@ -62,9 +61,14 @@ def system():
             # Send Final Directory to FTP_server
             main.mainSendDirectoryToFTPServer(args.long_label[enum], args.host_FTP, args.user_FTP, args.password_FTP,
                                               args.port_FTP,args.path_FTP)
+
     elif args.SubCommand == "original" :
 
         for enum,BamFile in enumerate(args.name):
+            # create files of chromossome sizes
+            # main.createChrLengthFiles(args.genome) (using FTP :not used anymore
+            main.createChrLengthFilesBAMFile(BamFile)
+
             #Preparing Final files
             UCSCFiles.createMainDirectory(args.long_label[enum], args.create_dir)
             UCSCFiles.writeGenomesFile(args.genome, args.create_dir)
