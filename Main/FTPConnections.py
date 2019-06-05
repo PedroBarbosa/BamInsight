@@ -27,7 +27,3 @@ def sendDirectoryToFTPServer(directoryName,FTPHOST,FTPUser="",FTPPassword = "",F
               '@'+ FTPHOST + ":" + str(FTPPort) + '/' + FTPPath + '{} \;')
 
 
-
-
-#sendDirectoryToFTPServer('immftp01.fm.ul.pt',FTPUser="mcfonsecaftp"
-#                               ,FTPPassword="Lark699%2Devan")
